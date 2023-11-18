@@ -1,4 +1,5 @@
 import 'package:flutter_go_router/screens/1_basic_screen.dart';
+import 'package:flutter_go_router/screens/2_named_screen.dart';
 import 'package:flutter_go_router/screens/root_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,7 +10,7 @@ import 'package:go_router/go_router.dart';
 
 // / -> home
 // /basic -> basic
-// 비효율적인 url 중복 문제를 피하기 위해 Go 함수 사용
+// /named ->
 final router = GoRouter(
   // routes에는 GoRoute를 넣어줌
   routes: [
@@ -18,10 +19,14 @@ final router = GoRouter(
       // path에 해당되는 화면을 지정
       builder: (context, state) => const RootScreen(),
       routes: [
-        // 중첩된 라우트이기 때문에 path가 /basic이 아닌 basic임
         GoRoute(
           path: 'basic',
           builder: (context, state) => const BasicScreen(),
+        ),
+        GoRoute(
+          path: 'named',
+          name: 'named_screen',
+          builder: (context, state) => const NamedScreen(),
         ),
       ],
     ),

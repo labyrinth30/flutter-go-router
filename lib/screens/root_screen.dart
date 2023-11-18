@@ -16,6 +16,11 @@ class RootScreen extends StatelessWidget {
             text: 'go basic',
             onPressed: () => context.go('/basic'),
           ),
+          CustomButton(
+            text: 'go Named',
+            // goNamed는 GoRoute의 name을 기준으로 라우팅함
+            onPressed: () => context.goNamed('named_screen'),
+          ),
         ],
       ),
     );
