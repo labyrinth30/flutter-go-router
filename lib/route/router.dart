@@ -3,6 +3,7 @@ import 'package:flutter_go_router/screens/2_named_screen.dart';
 import 'package:flutter_go_router/screens/3_push_screen.dart';
 import 'package:flutter_go_router/screens/4_pop_base_screen.dart';
 import 'package:flutter_go_router/screens/5_pop_return_screen.dart';
+import 'package:flutter_go_router/screens/6_path_param_screen.dart';
 import 'package:flutter_go_router/screens/root_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -44,6 +45,18 @@ final router = GoRouter(
               path: 'return',
               // /pop/return
               builder: (context, state) => const PopReturnScreen(),
+            ),
+          ],
+        ),
+        GoRoute(
+          // path에 :를 붙이면 :뒤에 들어오는 값을 변수의 이름으로 칭할 수 있음
+          path: 'path_param/:id', // '/path_param/123'
+          builder: (context, state) => const PathParamScreen(),
+          routes: [
+            // /path_param/:id/:name
+            GoRoute(
+              path: ':name',
+              builder: (context, state) => const PathParamScreen(),
             ),
           ],
         ),
