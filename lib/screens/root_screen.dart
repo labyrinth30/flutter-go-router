@@ -12,19 +12,28 @@ class RootScreen extends StatelessWidget {
     return DefaultLayout(
       body: ListView(
         children: [
+          // go 메서드
           CustomButton(
             text: 'go basic',
             onPressed: () => context.go('/basic'),
           ),
+          // goNamed 메서드
           CustomButton(
             text: 'go Named',
             // goNamed는 GoRoute의 name을 기준으로 라우팅함
             onPressed: () => context.goNamed('named_screen'),
           ),
+          // push 메서드
           CustomButton(
             text: 'go push',
             // goNamed는 GoRoute의 name을 기준으로 라우팅함
             onPressed: () => context.go('/push'),
+          ),
+          // pop 메서드
+          CustomButton(
+            text: 'Go Pop',
+            // goNamed는 GoRoute의 name을 기준으로 라우팅함
+            onPressed: () => context.go('/pop'),
           ),
         ],
       ),
