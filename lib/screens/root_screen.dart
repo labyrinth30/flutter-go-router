@@ -40,6 +40,11 @@ class RootScreen extends StatelessWidget {
             // goNamed는 GoRoute의 name을 기준으로 라우팅함
             onPressed: () => context.go('/path_param/456'),
           ),
+          CustomButton(
+            text: 'Go Query Param',
+            // goNamed는 GoRoute의 name을 기준으로 라우팅함
+            onPressed: () => context.go('/query_param'),
+          ),
         ],
       ),
     );
