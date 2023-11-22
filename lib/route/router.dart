@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_go_router/screens/10_transition_screen_1.dart';
+import 'package:flutter_go_router/screens/10_transition_screen_2.dart';
 import 'package:flutter_go_router/screens/1_basic_screen.dart';
 import 'package:flutter_go_router/screens/2_named_screen.dart';
 import 'package:flutter_go_router/screens/3_push_screen.dart';
@@ -136,6 +138,26 @@ final router = GoRouter(
                   return null;
                 }
               },
+            ),
+          ],
+        ),
+        GoRoute(
+          path: 'transition',
+          builder: (_, state) => const TransitionScreenOne(),
+          routes: [
+            GoRoute(
+              path: 'detail',
+              pageBuilder: (_, state) => CustomTransitionPage(
+                transitionDuration: const Duration(seconds: 1),
+                child: const TransitionScreenTwo(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+              ),
             ),
           ],
         ),
