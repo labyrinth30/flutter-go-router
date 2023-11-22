@@ -61,6 +61,10 @@ class RootScreen extends StatelessWidget {
             text: 'Transition Screen',
             onPressed: () => context.go('/transition'),
           ),
+          CustomButton(
+            text: 'Error Screen',
+            onPressed: () => context.go('/error'),
+          ),
         ],
       ),
     );
