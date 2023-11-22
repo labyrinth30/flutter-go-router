@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_go_router/screens/1_basic_screen.dart';
 import 'package:flutter_go_router/screens/2_named_screen.dart';
 import 'package:flutter_go_router/screens/3_push_screen.dart';
@@ -7,8 +8,14 @@ import 'package:flutter_go_router/screens/6_path_param_screen.dart';
 import 'package:flutter_go_router/screens/7_query_param_screen.dart';
 import 'package:flutter_go_router/screens/8_nested_child_screen.dart';
 import 'package:flutter_go_router/screens/8_nested_screen.dart';
+import 'package:flutter_go_router/screens/9_login_screen.dart';
+import 'package:flutter_go_router/screens/9_private_screen.dart';
 import 'package:flutter_go_router/screens/root_screen.dart';
 import 'package:go_router/go_router.dart';
+
+// 로그인이 되었는지 안됐는지
+// true - login ok / false - login no
+bool authState = false;
 
 // 실제 인터넷 라우팅처럼 라우팅함
 // https://naver.com/ 에서 / 뒤에 오는 것을 path라고 부름.
@@ -19,6 +26,14 @@ import 'package:go_router/go_router.dart';
 // /basic -> basic
 // /named ->
 final router = GoRouter(
+  redirect: (context, state) {
+    // return String -> 라우팅할 path (path)
+    // return null -> 원래 이동하려던 라우트로 이동
+    if (state.uri.path == '/login/private' && !authState) {
+      return '/login';
+    }
+    return null;
+  },
   // routes에는 GoRoute를 넣어줌
   routes: [
     GoRoute(
@@ -95,6 +110,34 @@ final router = GoRouter(
           builder: (context, state, child) => NestedScreen(
             child: child,
           ),
+        ),
+        GoRoute(
+          path: 'login',
+          builder: (_, state) => const LoginScreen(),
+          routes: [
+            GoRoute(
+              path: 'private', // /login/private
+              builder: (_, state) => const PrivateScreen(),
+            ),
+          ],
+        ),
+        GoRoute(
+          path: 'login2',
+          builder: (_, state) => const LoginScreen(),
+          routes: [
+            GoRoute(
+              path: 'private', // /login2/private
+              builder: (_, state) => const PrivateScreen(),
+              // path 지정 필요없음
+              redirect: (context, state) {
+                if (!authState) {
+                  return '/login2';
+                } else {
+                  return null;
+                }
+              },
+            ),
+          ],
         ),
       ],
     ),
