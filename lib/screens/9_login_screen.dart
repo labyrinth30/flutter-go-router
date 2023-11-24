@@ -15,28 +15,29 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-        body: ListView(
-      children: [
-        Text('Login State : $authState'),
-        CustomButton(
-          text: 'Go to Private Route',
-          onPressed: () {
-            if (GoRouterState.of(context).uri.path == '/login') {
-              context.go('/login/private');
-            } else {
-              context.go('/login2/private');
-            }
-          },
-        ),
-        CustomButton(
-          text: authState ? 'Logout' : 'Login',
-          onPressed: () {
-            setState(() {
-              authState = !authState;
-            });
-          },
-        ),
-      ],
-    ));
+      body: ListView(
+        children: [
+          Text('Login State : $authState'),
+          CustomButton(
+            text: 'Go to Private Route',
+            onPressed: () {
+              if (GoRouterState.of(context).uri.path == '/login') {
+                context.go('/login/private');
+              } else {
+                context.go('/login2/private');
+              }
+            },
+          ),
+          CustomButton(
+            text: authState ? 'Logout' : 'Login',
+            onPressed: () {
+              setState(() {
+                authState = !authState;
+              });
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

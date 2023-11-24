@@ -17,7 +17,7 @@ class ErrorScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          Text('Error: $error'),
+          Text('에러는? $error'),
           CustomButton(
             text: '홈으로 이동하기',
             onPressed: () => context.go('/'),
